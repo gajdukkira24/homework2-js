@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ледаче (lazy) завантаження зображень — IntersectionObserver</title>
+  <style>
+  
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img {
+       
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    
+    img.appear {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+    <h1>Демонстрація лінивого завантаження</h1>
+    <p>Гортай сторінку вниз, щоб зображення підвантажувались поступово </p>
+    <ul class="feed">
+    <li class="feed__item">
+        <img
+        data-lazy="https://images.unsplash.com/photo-1474511320723-9a56873867b5?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YW5pbWFsfGVufDB8fDB8fHww"
+        alt="avocado-cooked-delicious-dish"
+        width="640"
+          />
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+          soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+          perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+          fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+          tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+          dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+          minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+          laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+          quas cum doloremque maiores recusandae, assumenda similique cumque in.
+          Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+          similique, quisquam doloribus asperiores officiis ab distinctio.
+        </p>
+      </li>
+      <li class="feed__item">
+          <img
+            data-lazy="https://images.pexels.com/photos/39857/leopard-leopard-spots-animal-wild-39857.jpeg?cs=srgb&dl=pexels-pixabay-39857.jpg&fm=jpg"
+            alt="avocado-cooked-delicious-dish"
+            width="640"
+          />
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+            soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+            perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+            fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+            tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+            dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+            minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+            laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+            quas cum doloremque maiores recusandae, assumenda similique cumque in.
+            Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+            similique, quisquam doloribus asperiores officiis ab distinctio.
+          </p>
+        </li>
+        <li class="feed__item">
+          <img
+            data-lazy="https://t4.ftcdn.net/jpg/04/15/79/09/360_F_415790935_7va5lMHOmyhvAcdskXbSx7lDJUp0cfja.jpg"
+            alt="avocado-cooked-delicious-dish"
+            width="640"
+          />
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+            soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+            perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+            fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+            tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+            dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+            minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+            laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+            quas cum doloremque maiores recusandae, assumenda similique cumque in.
+            Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+            similique, quisquam doloribus asperiores officiis ab distinctio.
+          </p>
+        </li>
+        <li class="feed__item">
+          <img
+            data-lazy="https://images.pexels.com/photos/792381/pexels-photo-792381.jpeg?cs=srgb&dl=pexels-george-desipris-792381.jpg&fm=jpg"
+            alt="avocado-cooked-delicious-dish"
+            width="640"
+          />
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+            soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+            perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+            fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+            tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+            dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+            minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+            laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+            quas cum doloremque maiores recusandae, assumenda similique cumque in.
+            Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+            similique, quisquam doloribus asperiores officiis ab distinctio.
+          </p>
+        </li>
+        <li class="feed__item">
+          <img
+            data-lazy="https://i.pinimg.com/564x/6e/cf/0f/6ecf0f03d9e82b6e5c816f6a50cd2e41.jpg"
+            alt="avocado-cooked-delicious-dish"
+            width="640"
+          />
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+            soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+            perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+            fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+            tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+            dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+            minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+            laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+            quas cum doloremque maiores recusandae, assumenda similique cumque in.
+            Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+            similique, quisquam doloribus asperiores officiis ab distinctio.
+          </p>
+        </li>
+        <li class="feed__item">
+          <img
+            data-lazy="https://img.freepik.com/free-psd/adorable-deer-isolated_23-2151883675.jpg?semt=ais_hybrid&w=740&q=80"
+            alt="avocado-cooked-delicious-dish"
+            width="640"
+          />
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+            soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+            perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+            fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+            tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+            dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+            minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+            laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+            quas cum doloremque maiores recusandae, assumenda similique cumque in.
+            Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+            similique, quisquam doloribus asperiores officiis ab distinctio.
+          </p>
+        </li>
+        <li class="feed__item">
+          <img
+            data-lazy="https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?cs=srgb&dl=pexels-pixabay-162140.jpg&fm=jpg"
+            alt="avocado-cooked-delicious-dish"
+            width="640"
+          />
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minus
+            soluta sed ea rem, debitis nulla ratione eos quia exercitationem
+            perspiciatis! Nam tenetur doloremque libero, fuga aperiam delectus
+            fugit dolor deserunt, rerum aliquid animi error nobis quae mollitia
+            tempore ab eos? Pariatur enim saepe nostrum aspernatur ea quam labore
+            dolores, excepturi ex necessitatibus aliquam numquam, illum harum
+            minima eveniet atque sit. Optio, consequatur. Nam facere culpa tenetur
+            laudantium eaque nesciunt repellat alias iure. Maxime quos consectetur
+            quas cum doloremque maiores recusandae, assumenda similique cumque in.
+            Consequuntur corrupti vero atque, nam facilis blanditiis saepe
+            similique, quisquam doloribus asperiores officiis ab distinctio.
+          </p>
+        </li>
+  
+  </ul >
+
+  <script src="./js.js"></script>
+</body>
+</html>
